@@ -1,0 +1,8 @@
+pll_current_language
+Returns the current language
+
+Usage:
+pll_current_language( $value ); 
+$value => (optional) either name or locale or slug, defaults to slug
+returns either the full name, or the WordPress locale (just as the WordPress core function ‘get_locale’ or the slug ( 2-letters code) of the current language.
+
