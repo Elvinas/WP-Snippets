@@ -1,0 +1,29 @@
+function m_wc_add_to_cart( product_id ) {
+		if ( 'undefined' === typeof wc_add_to_cart_params ) {
+			// The add to cart params are not present.
+			return false;
+		}
+
+		var data = {
+			product_id: product_id,
+			quantity: 1,
+		};
+
+		jQuery.post( wc_add_to_cart_params.wc_ajax_url.toString().replace( '%%endpoint%%', 'add_to_cart' ), data, function( response ) {
+			if ( ! response ) {
+				return;
+			}
+
+			// This redirects the user to the product url if for example options are needed ( in a variable product ).
+			// You can remove this if it's not the case.
+			if ( response.error && response.product_url ) {
+				window.location = response.product_url;
+				return;
+			}
+
+	
+
+			// This is important so your theme gets a chance to update the cart quantity for example, but can be removed if not needed.
+			jQuery( document.body ).trigger( 'added_to_cart', [ response.fragments, response.cart_hash ] );
+		});
+	}
