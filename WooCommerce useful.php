@@ -1,5 +1,7 @@
-<?php
+<?php submit_button(); ?>
 
+<?php
+get_woocommerce_currency_symbol
 is_user_logged_in()
 get_current_user_id
 $order->set_user_id($user_id)
